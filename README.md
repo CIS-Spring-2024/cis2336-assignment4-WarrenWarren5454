@@ -1,4 +1,11 @@
-1.This assignment is graded.
-2.please follow the instructions file posted on canvas
-3.Upload your work to canvas and push all your files to your repository.
-4.clone this repository and start working on the Assignmnet-4&5
+Setup instructions:
+- Open terminal
+- navigate to backend folder, then source file
+- Run the command "npm run start"
+- Console should output "Server is running on Port 3000"
+- All backend requirements will work at this point
+
+Backend Functionality:
+- When an order is submitted, the details of it are sent in a POST request
+- When the order confirmation page is loaded, a GET request retrieves the order data and outputs the total
+

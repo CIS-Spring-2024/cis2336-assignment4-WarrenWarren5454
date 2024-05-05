@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Owner Biography</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            
+            background: linear-gradient(to right, #fdfdfd, #c0c0c0);
+            color: #dc3545;
+            text-align: center; 
+        }
+        .navbar {
+            background-color: #72161f;
+        }
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .jumbotron {
+            background: linear-gradient(to right, #dc3545, #ffffff);
+            color: #ffffff; 
+        }
+        
+        .vertical-line {
+            border-left: 1px solid #ffffff;
+            height: 30px;
+            margin-right: 15px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            margin: 0 55px;
+        }
+        
+        .homeImage img {
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto; 
+            display: block; 
+        }
+        p{
+            font-size: larger;
+        }
+        hr {
+            border: none;
+            height: 5px;
+            background-color: #b8000086;  /* Modern Browsers */
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand">
+            <img src="Images\uh-primary.svg" alt="Logo" height="30" class="d-inline-block align-top">
+        </a>
+        
+        
+        <div class="navbar-brand">
+            SCHOLAR DINING
+        </div>
+        
+        <!--White Line-->
+        <div class="vertical-line"></div>
+
+        <!--Nav list-->
+        
+            <ul class="navbar-nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li>
+                    <li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href="order.html">Order</a>
+                        </li>
+                    </li>
+            </ul>
+            <div class="vertical-line"></div>
+        
+    </div>
+</nav>
+
+<!-- Home stuff -->
+<section id="contact" class="py-5">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h1><br>COMING SOON!<hr></h1>
+                <p>Welcome to Scholar Dining! Located at the heart of the University of Houston Sugar Land, Scholar Dining is set to open its doors in December 2025. 
+                    We are thrilled to introduce a culinary haven where flavor meets innovation. 
+                    Our diverse menu offers a wide variety of options, from delectable classics to enticing new creations. 
+                    Prepare your taste buds for an unforgettable journey as we redefine the dining experience. 
+                    Join us in celebrating good food, great company, and the spirit of scholarly community.<br><hr></p>
+            </div>
+            <!-- Image on the right -->
+            <div class="col-md-6 homeImage">
+                <img src="Images\carouselPictures\cafeImage1.jpg" alt="Cafe">
+            </div>
+            
+            
+        </div>
+        
+    </div>
+</section>
+
+<!-- Bootstrap JavaScript dependency thing -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

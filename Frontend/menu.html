@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Owner Biography</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #fdfdfd, #c0c0c0);
+            color: #dc3545;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #72161f;
+        }
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .jumbotron {
+            background: linear-gradient(to right, #dc3545, #ffffff);
+            color: #ffffff;
+        }
+        #pic {
+            height: 250px;
+            width: 250px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+        .vertical-line {
+            border-left: 1px solid #ffffff;
+            height: 30px;
+            margin-right: 15px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            margin: 0 55px;
+        }
+        p {
+            font-size: large;
+        }
+        .content-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+            justify-content: center;
+            align-items: start;
+            padding: 20px;
+        }
+        #menuDisplay {
+            margin-right: 20px;
+            margin-top: 20px;
+            height: 500px; 
+            overflow-y: auto; 
+        }
+        #calendarContainer {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 70px); 
+            gap: 2px;
+        }
+        .calendar-day, .day-header {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            background: #e4e4e4;
+        }
+        .day-header {
+            background: #dc3545;
+            color: white;
+        }
+        .calendar-day:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        li {
+            list-style-type: none;
+        }
+        .calendar-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -20px;
+            margin-right: 450px;
+        }
+
+        .menu-grid {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            margin-left: 450px;
+        }
+        hr{
+            height:2.5px;
+            background-color: #72161f;
+            width: 70%;
+            margin: auto;
+        }
+        .weekend {
+            background-color: #747474; 
+            color: #747474; 
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .carousel {
+            position: relative;
+            margin: 0 auto; 
+            overflow: hidden;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .carousel-images {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .carousel-images img {
+            width: auto; 
+            max-width: 30%; 
+            height: auto; 
+            max-height: 400px; 
+        }
+        
+    </style>
+</head>
+
+<body>
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand">
+            <img src="Images\uh-primary.svg" alt="Logo" height="30" class="d-inline-block align-top">
+        </a>
+        
+        
+        <div class="navbar-brand">
+            SCHOLAR DINING
+        </div>
+        
+        <!--White Line-->
+        <div class="vertical-line"></div>
+
+        <!--Nav list-->
+        
+            <ul class="navbar-nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li>
+                    <li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href="order.html">Order</a>
+                        </li>
+                    </li>
+            </ul>
+            <div class="vertical-line"></div>
+        
+    </div>
+</nav>
+<br><br>
+
+<h1>Menu Calendar</h1>
+
+<br>
+<h4>At Scholar Dining, we plan out our meals on a monthly basis. Feel free to check out what we are serving this month! Menus are subject to change.</h4>
+<br>
+<h5>Dining Hours: Mon - Fri | 8:00AM - 9:00PM</h5>
+<br>
+<hr>
+<br>
+
+
+<div class="content-container">
+    <div class="menu-grid">
+        <div id="menuDisplay" style="display:none;">
+            <h3>Menu for <span id="menuDate"></span>:</h3>
+            <ul id="dailyMenu"></ul>
+        </div>
+    </div>
+    <div class="calendar-grid">
+        <div id="calendarContainer">
+            <p>↓ Click on a day to see the menu ↓</p>
+            <h2 id="monthYear"></h2>
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<h1>Photos (Concept Art)</h1>
+<br>
+<div id="carousel" class="carousel">
+    <div class="carousel-images">
+      <img src="Images/eggs.webp" alt="Image 1">
+      <img src="Images/friedChicken.webp" alt="Image 2">
+      <img src="Images/yogurt.webp" alt="Image 3">
+      <!-- More images can be added here -->
+    </div>
+    
+  </div>
+
+  <br><br><br>
+  <hr>
+  <br><br>
+  
+
+
+
+<script>
+$(document).ready(function() {
+    function createCalendar() {
+        const now = new Date();
+        const month = now.getMonth();
+        const year = now.getFullYear();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        const currDay = now.getDate();
+        
+        
+        $('#monthYear').text(now.toLocaleString('default', { month: 'long' }) + ' ' + year);
+
+        let daysHtml = '';
+        const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+        dayNames.forEach(day => {
+            daysHtml += `<div class='day-header'>${day}</div>`;
+        });
+
+        for (let i = 0; i < firstDay; i++) {
+            daysHtml += "<div class='calendar-day'></div>";
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+    if (new Date(year, month, day).getDay() === 0 || new Date(year, month, day).getDay() === 6) {
+        daysHtml += `<div class="calendar-day weekend" onclick="showMenu(${day})">${day}</div>`;
+    } 
+    else {
+        daysHtml += `<div class="calendar-day" onclick="showMenu(${day})">${day}</div>`;
+    }
+}
+
+
+        $('#calendar').html(daysHtml);
+
+        
+        
+        
+    }
+    
+    createCalendar();
+  
+    const menuData = {
+        1: ["<strong>Breakfast</strong>: Scrambled Eggs, Toast, Oatmeal<br>", "<strong>Lunch</strong>: Beef Tacos, Grilled Chicken, Sandwich Bar<br>", "<strong>Dinner</strong>: Rotisserie Chicken, Pasta, Macaroni and Cheese<br>"],
+        2: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        3: ["<strong>Breakfast</strong>: Pancakes, Parfait Bar, Cereal<br>", "<strong>Lunch</strong>: BBQ Pork, Sandwich Bar, Smoothies<br>", "<strong>Dinner</strong>: Chicken Fried Rice, Mongolian Beef, Wonton Soup<br>"],
+        4: ["<strong>Breakfast</strong>: Hard Boiled Eggs, Waffles, Greek Yogurt<br>", "<strong>Lunch</strong>: Hot Dogs, Chicken Pot Pie, Clam Chowder<br>", "<strong>Dinner</strong>: Shrimp Quesadilla, Turkey Shepherd's Pie, Swedish Meatballs<br>"],
+        5: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        6: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        7: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        8: ["<strong>Breakfast</strong>: Scrambled Eggs, Toast, Oatmeal<br>", "<strong>Lunch</strong>: Beef Tacos, Grilled Chicken, Sandwich Bar<br>", "<strong>Dinner</strong>: Rotisserie Chicken, Pasta, Macaroni and Cheese<br>"],
+        9: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        10: ["<strong>Breakfast</strong>: Pancakes, Parfait Bar, Cereal<br>", "<strong>Lunch</strong>: BBQ Pork, Sandwich Bar, Smoothies<br>", "<strong>Dinner</strong>: Chicken Fried Rice, Mongolian Beef, Wonton Soup<br>"],
+        11: ["<strong>Breakfast</strong>: Hard Boiled Eggs, Waffles, Greek Yogurt<br>", "<strong>Lunch</strong>: Hot Dogs, Chicken Pot Pie, Clam Chowder<br>", "<strong>Dinner</strong>: Shrimp Quesadilla, Turkey Shepherd's Pie, Swedish Meatballs<br>"],
+        12: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        13: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        14: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        15: ["<strong>Breakfast</strong>: Scrambled Eggs, Toast, Oatmeal<br>", "<strong>Lunch</strong>: Beef Tacos, Grilled Chicken, Sandwich Bar<br>", "<strong>Dinner</strong>: Rotisserie Chicken, Pasta, Macaroni and Cheese<br>"],
+        16: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        17: ["<strong>Breakfast</strong>: Pancakes, Parfait Bar, Cereal<br>", "<strong>Lunch</strong>: BBQ Pork, Sandwich Bar, Smoothies<br>", "<strong>Dinner</strong>: Chicken Fried Rice, Mongolian Beef, Wonton Soup<br>"],
+        18: ["<strong>Breakfast</strong>: Hard Boiled Eggs, Waffles, Greek Yogurt<br>", "<strong>Lunch</strong>: Hot Dogs, Chicken Pot Pie, Clam Chowder<br>", "<strong>Dinner</strong>: Shrimp Quesadilla, Turkey Shepherd's Pie, Swedish Meatballs<br>"],
+        19: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        20: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        21: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        22: ["<strong>Breakfast</strong>: Scrambled Eggs, Toast, Oatmeal<br>", "<strong>Lunch</strong>: Beef Tacos, Grilled Chicken, Sandwich Bar<br>", "<strong>Dinner</strong>: Rotisserie Chicken, Pasta, Macaroni and Cheese<br>"],
+        23: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        24: ["<strong>Breakfast</strong>: Pancakes, Parfait Bar, Cereal<br>", "<strong>Lunch</strong>: BBQ Pork, Sandwich Bar, Smoothies<br>", "<strong>Dinner</strong>: Chicken Fried Rice, Mongolian Beef, Wonton Soup<br>"],
+        25: ["<strong>Breakfast</strong>: Hard Boiled Eggs, Waffles, Greek Yogurt<br>", "<strong>Lunch</strong>: Hot Dogs, Chicken Pot Pie, Clam Chowder<br>", "<strong>Dinner</strong>: Shrimp Quesadilla, Turkey Shepherd's Pie, Swedish Meatballs<br>"],
+        26: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        27: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        28: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        29: ["<strong>Breakfast</strong>: Scrambled Eggs, Toast, Oatmeal<br>", "<strong>Lunch</strong>: Beef Tacos, Grilled Chicken, Sandwich Bar<br>", "<strong>Dinner</strong>: Rotisserie Chicken, Pasta, Macaroni and Cheese<br>"],
+        31: ["<strong>Breakfast</strong>: Oatmeal, Cereal, Scrambled Eggs<br>", "<strong>Lunch</strong>: Grilled Chicken, Sandwich Bar, Vanilla Yogurt<br>", "<strong>Dinner</strong>: Parmesan Spaghetti, Hamburger Stroganoff, Tuna Casserole<br>"],
+        30: ["<strong>Breakfast</strong>: Pancakes, French Toast, Cereal<br>", "<strong>Lunch</strong>: Fried Chicken, Sandwich Bar, Yogurt<br>", "<strong>Dinner</strong>: Steak, Rice, Salad<br>"],
+        'none': ["Sorry, we aren't open on this day!<br>Please refer to the schedule above."]
+        
+    };
+    //show menu function - this runs when the user clicks on a day. I added some parameters to check if the day they chose is the same as the current day, just for clarity.
+    //if they open the website on a day that Scholar Dining is not open, then I will display a message saying we dont serve anything on that day
+    window.showMenu = function(day) {
+        const now = new Date();
+        const monthe = now.getMonth();
+        
+        const currDay = now.getDate();
+        if (menuData[day]) {
+            if(currDay == day){
+                $('#menuDate').text(`Today (${monthe+1}/${day}/2024)`);
+            }
+            else if(day == 'none'){
+                $('#menuDate').text(`Today (${monthe+1}/${currDay}/2024)`);
+            }
+            else{
+                $('#menuDate').text(`${monthe+1}/${day}/2024`);
+            }
+            
+            $('#dailyMenu').empty();
+            menuData[day].forEach(item => {
+                $('#dailyMenu').append(`<li>${item}</li>`);
+            });
+            $('#menuDisplay').show();
+        } else {
+            $('#menuDisplay').hide();
+        }
+    };
+    const now = new Date();
+    const currDay = now.getDate();
+
+    if (currDay in menuData){
+        showMenu(currDay);
+    }
+    else{
+        showMenu('none');
+    }
+        
+});
+</script>
+
+
+
+
+</body>
+</html>
+
+
+

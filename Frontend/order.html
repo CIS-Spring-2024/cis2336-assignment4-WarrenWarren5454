@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Owner Biography</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #fdfdfd, #c0c0c0);
+            color: #dc3545;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #72161f;
+        }
+        .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+        .jumbotron {
+            background: linear-gradient(to right, #dc3545, #ffffff);
+            color: #ffffff; 
+        }
+        .vertical-line {
+            border-left: 1px solid #ffffff;
+            height: 30px;
+            margin-right: 15px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            margin: 0 55px;
+        }
+        .homeImage img {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin-left: auto;
+        }
+        p {
+            font-size: larger;
+        }
+        hr {
+            height: 2.5px;
+            background-color: #72161f;
+            width: 70%;
+            margin: auto;
+        }
+        #categoryNav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #categoryNav li {
+            display: inline;
+            margin-right: 10px;
+        }
+        #itemDisplay {
+            margin-top: 20px;
+        }
+        .sidebar {
+    width: 200px;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    margin-left: 200px; /* Same as the sidebar's width */
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.grid div {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+
+#cartIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #dc3545;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cartDetails {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    height: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: none;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+#cartDetails.expanded {
+    width: 300px; 
+    max-height: 70%; 
+    overflow-y: auto; 
+}
+#categoryNav button {
+    background-color: #72161f;  
+    color: white;           
+    border: none;          
+    padding: 10px 20px;     
+    font-size: 16px;        
+    cursor: pointer;        /* Change cursor to pointer to indicate it's clickable */
+    border-radius: 5px;     
+}
+#categoryNav button:hover {
+    background-color: rgb(228, 0, 0); 
+}
+
+#itemDisplay button {
+    background-color: #72161f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#itemDisplay button:hover {
+    background-color: rgb(228, 0, 0);
+}
+#itemDisplay {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 20px; 
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 800px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.grid div {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand">
+            <img src="Images\uh-primary.svg" alt="Logo" height="30" class="d-inline-block align-top">
+        </a>
+        
+        <div class="navbar-brand">
+            SCHOLAR DINING
+        </div>
+        
+        <!-- White Line -->
+        <div class="vertical-line"></div>
+
+        <!-- Nav list -->
+        <ul class="navbar-nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="menu.html">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="order.html">Order</a>
+            </li>
+        </ul>
+        <div class="vertical-line"></div>
+    </div>
+</nav>
+
+<br>
+<h1>Online Orders</h1>
+<p>Customers can order food from a limited menu for pickup here.</p>
+<p>Items will be discarded if they are not picked up within an hour of the designated time.</p>
+<p>You may not order more than 5 items at a time. Click the shopping cart in the bottom right to clear or submit an order.</p>
+<br>
+<hr>
+<br>
+
+<!-- Categories Navigation -->
+<nav id="categoryNav">
+    <ul>
+        <li><button onclick="showCategory('beverages')">Beverages</button></li>
+        <li><button onclick="showCategory('protein')">Protein</button></li>
+        <li><button onclick="showCategory('sweets')">Sweets</button></li>
+        <li><button onclick="showCategory('snacks')">Snacks</button></li>
+    </ul>
+</nav>
+
+<!-- Items Display -->
+<div id="itemDisplay"></div>
+<!-- Shopping Cart Icon -->
+<div id="cartIcon" onclick="toggleCart()">
+    <img src="images/shopping-cart.svg" alt="Cart" style="width: 50px; height: 50px;">
+</div>
+
+<!-- Cart Details -->
+<div id="cartDetails" style="display: none;">
+    <h4>Cart Items</h4>
+    <ul id="cartItemsList"></ul>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="submitOrder()">Submit Order</button>
+</div>
+
+<br><br>
+
+<script>
+// Sample data for items in each category
+const items = {
+    beverages: [
+        { name: "Water", imageUrl: "images/water.webp", price: 1.00 },
+        { name: "Lemonade", imageUrl: "images/lemonade.webp", price: 1.50 },
+        { name: "Fountain Drink", imageUrl: "images/fountain.webp", price: 1.25 },
+        { name: "Coffee", imageUrl: "images/coffee.webp", price: 2.00 }
+    ],
+    protein: [
+        { name: "BBQ Chicken Bowl", imageUrl: "images/chicken.webp", price: 5.50 },
+        { name: "Pulled Pork Sandwich", imageUrl: "images/pulledPork.webp", price: 6.00 }
+    ],
+    sweets: [
+        { name: "Chocolate Chip Cookie", imageUrl: "images/cookie.webp", price: 1.20 },
+        { name: "Brownie", imageUrl: "images/brownie.webp", price: 1.50 }
+    ],
+    snacks: [
+        { name: "Protein Bar", imageUrl: "images/protein.webp", price: 2.50 },
+        { name: "Trail Mix", imageUrl: "images/trailMix.webp", price: 2.00 },
+        { name: "Applesauce", imageUrl: "images/applesauce.webp", price: 1.00 }
+    ]
+};
+
+
+function showCategory(category) {
+    const itemDisplay = document.getElementById('itemDisplay');
+    itemDisplay.innerHTML = '';
+
+    items[category].forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'grid-item'; // Added class for styling
+
+        const itemImage = document.createElement('img');
+        itemImage.src = item.imageUrl;
+        itemImage.alt = "Image of " + item.name;
+        itemImage.style.width = "100%";
+
+        const itemName = document.createElement('p');
+        itemName.textContent = item.name;
+
+        const itemPrice = document.createElement('p');
+        itemPrice.textContent = `$${item.price.toFixed(2)}`;
+
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add to Cart';
+        addButton.className = 'add-to-cart';
+        addButton.onclick = function() { addToCart(item, addButton); }; // Pass the button to the function
+
+        itemElement.appendChild(itemImage);
+        itemElement.appendChild(itemName);
+        itemElement.appendChild(itemPrice);
+        itemElement.appendChild(addButton);
+
+        itemDisplay.appendChild(itemElement);
+    });
+}
+
+
+
+// add item to cart
+const cart = [];
+function addToCart(item) {
+    cart.push(item);
+    console.log('Cart:', cart); 
+}
+
+
+function addToCart(item, button) {
+    const totalItems = cart.reduce((sum, cartItem) => sum + cartItem.quantity, 0); // Calculate total items
+
+    if (totalItems >= 5) {
+        alert("You cannot order more than 5 items at a time."); // Show alert if the limit is reached
+        return; // Stop adding more items
+    }
+
+    // Find the item in the cart
+    const cartItemIndex = cart.findIndex(x => x.name === item.name);
+    if (cartItemIndex > -1) {
+        if (cart[cartItemIndex].quantity < 5) { // Ensure no single item exceeds the count of 5
+            cart[cartItemIndex].quantity++;
+        } else {
+            alert("You cannot have more than 5 of any single item."); 
+            return; // Stop adding this item
+        }
+    } else {
+        cart.push({ ...item, quantity: 1 }); 
+    }
+
+    updateCartUI();
+
+    // added flash
+    button.textContent = 'Added!';
+    button.style.backgroundColor = '#4CAF50'; // Change to green for success
+    setTimeout(() => {
+        button.textContent = 'Add to Cart';
+        button.style.backgroundColor = ''; // Reset to original
+    }, 1000); 
+}
+
+function updateCartUI() {
+    const cartItemsList = document.getElementById('cartItemsList');
+    cartItemsList.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        const itemElement = document.createElement('li');
+        itemElement.textContent = `(${item.quantity}) ${item.name} - Total: $${(item.price * item.quantity).toFixed(2)}`;
+        cartItemsList.appendChild(itemElement);
+    });
+
+    const totalElement = document.createElement('p');
+    
+    cartItemsList.appendChild(totalElement);
+
+    if (cart.length === 0 && document.getElementById('cartDetails').classList.contains('expanded')) {
+        toggleCart(); // Automatically hide the cart if it's empty
+    }
+}
+
+function toggleCart() {
+    const cartDetails = document.getElementById('cartDetails');
+    if (cartDetails.style.display === 'none' || cartDetails.style.display === '') {
+        cartDetails.style.display = 'block'; // Show cart if it was hidden
+        cartDetails.classList.add('expanded'); 
+    } else {
+        cartDetails.classList.remove('expanded'); 
+        setTimeout(() => { // Delay the hiding to see the transition
+            cartDetails.style.display = 'none';
+        }, 300); 
+    }
+}
+
+
+function clearCart() {
+    cart.length = 0; // Clear the cart array
+    updateCartUI(); // Update the UI
+    setTimeout(() => toggleCart(), 300); // Delay the hide to see the transition if needed
+}
+
+function submitOrder() {
+    const url = 'http://localhost:3000/order';
+    const items = cart.map(item => ({
+        price: parseFloat(item.price),
+        quantity: parseInt(item.quantity),
+        name: item.name
+    }));
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        
+        window.location.href = 'orderConfirmation.html';
+        clearCart();  // Clear the cart after submitting
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to submit order: ' + error.message);
+    })
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
